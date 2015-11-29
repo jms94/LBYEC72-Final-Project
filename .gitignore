@@ -1,0 +1,429 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#include "mypolynomial.h"
+
+#define PI 3.14159265358979
+
+int conv(){
+  int option=0;
+  int length1;
+  int mass1;
+  char oplength[128];
+  char opmass[128];
+  
+  while(option!=99){
+  puts("==========================");
+  puts("Converters");
+  puts("==========================");
+  puts("1. Length");
+  puts("2. Mass");
+  puts("99. Exit to main menu");
+  puts("==========================");
+  printf(">> ");
+  printf("Please select an option\n>> ");
+  scanf("%d",&option);
+    if(option==1){
+      puts("You selected Length");
+      printf("Please input a length followed by it's units (m,cm,mm,in,ft)\n>> ");
+      scanf("%d %s",&length1,&oplength);
+      if(strcmp(oplength, "m")==0){
+	puts("The conversions are:");
+	printf("%d m = %.2f ft\n",length1,length1*3.2808);
+	printf("%d m = %.2f in\n",length1,length1*39.370);
+	printf("%d m = %d cm\n",length1,length1*100);
+	printf("%d m = %d mm\n",length1,length1*1000);
+      }
+      else if(strcmp(oplength, "cm")==0){
+	puts("The conversions are:");
+	printf("%d cm = %.5f ft\n",length1,length1*0.032808);
+	printf("%d cm = %.5f in\n",length1,length1*0.39370);
+	printf("%d cm = %.5f m\n",length1,length1*0.01);
+	printf("%d cm = %d mm\n",length1,length1*10);
+      }
+      else if(strcmp(oplength, "mm")==0){
+	puts("The conversions are:");
+	printf("%d mm = %.5f ft\n",length1,length1*0.032808);
+	printf("%d mm = %.5f in\n",length1,length1*0.39370);
+	printf("%d mm = %.5f m\n",length1,length1*0.001);
+	printf("%d mm = %.5f cm\n",length1,length1*.1);
+      }
+      else if(strcmp(oplength, "ft")==0){
+	puts("The conversions are:");
+	printf("%d ft = %d in\n",length1,length1*12);
+	printf("%d ft = %.5f m\n",length1,length1/3.2808);
+	printf("%d ft = %.5f cm\n",length1,length1/0.032808);
+	printf("%d ft = %.5f mm\n",length1,length1/0.0032808);
+      }
+      else if(strcmp(oplength, "in")==0){
+	puts("The conversions are:");
+	printf("%d in = %.5f ft\n",length1,length1*0.083333);
+	printf("%d in = %.5f m\n",length1,length1/39.37);
+	printf("%d in = %.5f cm\n",length1,length1/0.39370);
+	printf("%d in = %.5f mm\n",length1,length1/0.039370);
+      }
+      else{
+	puts("Incorrect input. Please try again");
+      }
+    }
+   if(option==2){
+     puts("You selected mass");
+     printf("Please enter a mass value followed by its units (eg. 5 (kg/g/lb)\n>>");
+     scanf("%d %s",&mass1,&opmass);
+     if(strcmp(opmass, "kg")==0 || strcmp(opmass, "kgs")==0 || strcmp(opmass, "KG")==0 || strcmp(opmass, "KGS")==0 || strcmp(opmass, "kilograms")==0){
+	puts("The conversions are:");
+	printf("%d kg = %.5f lb\n",mass1,mass1*2.204622622);
+	printf("%d kg = %d g\n",mass1,mass1*1000);
+      }
+      else if(strcmp(opmass, "g")==0 || strcmp(opmass, "G")==0 || strcmp(opmass, "grams")==0){
+	puts("The conversions are:");
+	printf("%d g = %.5f lb\n",mass1,mass1*0.002204623);
+	printf("%d g = %.5f kg\n",mass1,mass1*0.001);
+      }
+      else if(strcmp(opmass, "lb")==0 || strcmp(opmass, "lbs")==0 || strcmp(opmass, "LB")==0 || strcmp(opmass, "LBS")==0 || strcmp(opmass, "pounds")==0){
+	puts("The conversions are:");
+	printf("%d lb = %.5f kg\n",mass1,mass1*0.45359237);
+	printf("%d lb = %.5f g\n",mass1,mass1*453.59237);
+      }
+      else{
+	puts("Incorrect input. Please try again");
+      }
+   }
+  } 
+  return 0;
+}
+
+int calc(){
+  float number1=0;
+  float number2=0;
+  float answer=0;
+  char operation;
+
+  printf("Enter an operation (+,-,*,/)\n>>");
+  scanf("%f %c %f", &number1,&operation, &number2);
+
+  if(operation=='+')
+    {
+                  printf("Answer: %.3f\n", number1+number2);
+    }
+  else if(operation=='-')
+    {
+                  printf("Answer: %.3f\n", number1-number2);
+    }
+  else if(operation=='*')
+    {
+
+                  printf("Answer: %.3f\n", number1*number2);
+    }
+  else if(operation=='/')
+    {
+                  printf("Answer: %.3f\n", number1/number2);
+    }
+  else if(operation=='%')
+    {
+      printf("Answer: %.3f\n", number1-floor(number1/number2)*number2);
+    }
+  else
+    {
+      printf("Incorrect input please try again\n");
+    }
+  return 0;
+}
+
+int volum(){
+
+  int vopt;
+  double radi, le, he, de, che, cradi, f3;
+  double svol, cuvol, covol;
+  double sstep, cstep1, cstep2;
+
+  do{
+    puts("\nChoose a shape: ");
+    puts("1.  Sphere");
+    puts("2.  Cuboid");
+    puts("3.  Cone");
+    puts("99. Back");
+    scanf("%d", &vopt);
+
+    switch(vopt){
+    case 1:
+      printf("\nEnter the radius: ");
+      scanf("%lf", &radi);
+
+      sstep=radi*radi*radi;
+      f3=1.33333333333333333;
+      svol=f3*PI*sstep;
+
+      printf("The volume of the sphere is %f units cubed.", svol);
+      break;
+
+    case 2:
+      printf("\nEnter the length: ");
+      scanf("%lf", &le);
+      printf("\nEnter the height: ");
+      scanf("%lf", &he);
+      printf("\nEnter the depth: ");
+      scanf("%lf", &de);
+
+      cuvol=le*he*de;
+      
+      printf("The volume of the cuboid is %f units cubed.", cuvol);
+      break;
+
+    case 3:
+      printf("\nEnter the radius: ");
+      scanf("%lf", &cradi);
+      printf("\nEnter the height: ");
+      scanf("%lf", &che);
+
+      cstep1=che/3;
+      cstep2=cradi*cradi;
+      covol=cstep1*cstep2*PI;
+      
+      printf("The volume of the cone is %f units cubed.", covol);
+      break;
+
+    case 99:
+      break;
+
+    default:
+      puts("Invalid input!");
+    }
+  }while(vopt!=99);
+
+}
+
+int circ(){
+  double radi, carea, circum;
+  double cstep;
+  int copt;
+
+  do{
+    printf("\n\nEnter the radius: ");
+    scanf("%lf", &radi);
+
+    circum=2*PI*radi;
+    cstep=radi*radi;
+    carea=cstep*PI;
+    
+    printf("\nThe area of the circle is %f units squared.", carea);
+    printf("\nThe circumference of the circle is %f units.\n", circum);
+    
+    puts("Try again? (Any Number = Yes | 0 = No)");
+    scanf("%d", &copt);
+  }while(copt!=0);
+}
+
+int polymenu(){
+  int snum, len;
+  int inan, perim, inansum;
+  int istep1, istep2;
+  int polopt;
+
+  do{
+  printf("\n\nEnter number of sides the regular polygon has (n >= 3, whole numbers only): ");
+  scanf("%d", &snum);
+
+  if(snum>=3){
+    printf("\nEnter the length of each side of the regular polygon: ");
+    scanf("%d", &len);
+    istep1=snum-2;
+    istep2=180*istep1;
+    inan=istep2/snum;
+
+    inansum=istep2;
+
+    perim=snum*len;
+
+    printf("\n\nThe perimeter of your %d sided regular polygon is %d units.\n", snum, perim);
+    printf("The sum of all interior angles is %d degrees.\n", inansum);
+    printf("Each interior angle is %d degrees.\n\n", inan);
+
+    puts("Try again? (Any Number = Yes | 0 = No)");
+    scanf("%d", &polopt);
+  }
+  else{
+    puts("Invalid side count. Try again!");
+  }
+  }while(polopt!=0);
+}
+
+int kinemenu(){
+  int kopt;
+  double vf, vi, a, t, xf, xi;
+  double step1, step2, step3, final;
+
+  do{
+  puts("\nWhich equation will be used? ('.' denotes initial value)");
+  puts("1.  v = v. + at");
+  puts("2.  v^2 = v.^2 + 2a(x-x.)");
+  puts("3.  x = v.t + (1/2)at^2 + x.");
+  puts("99. Back");
+  scanf("%d", &kopt);
+
+  switch(kopt){
+  case 1:
+    printf("\n Enter initial velocity: ");
+    scanf("%lf", &vi);
+    printf("\n Enter acceleration: ");
+    scanf("%lf", &a);
+    printf("\n Enter time (in seconds): ");
+    scanf("%lf", &t);
+
+    step1=a*t;
+    final=step1+vi;
+    printf("\n\nThe final velocity is equal to %f \n", final);
+    break;
+
+  case 2:
+    printf("\n Enter initial velocity: ");
+    scanf("%lf", &vi);
+    printf("\n Enter acceleration: ");
+    scanf("%lf", &a);
+    printf("\n Enter initial position: ");
+    scanf("%lf", &xi);
+    printf("\n Enter final position: ");
+    scanf("%lf", &xf);
+
+    step1=xf-xi;
+    step2=2*a*step1;
+    step3=vi*vi;
+    vf=step3+step2;
+    final=sqrt(vf);
+    printf("\n\nThe final velocity is equal to %f \n", final);
+    break;
+
+  case 3:
+    printf("\n Enter initial velocity: ");
+    scanf("%lf", &vi);
+    printf("\n Enter acceleration: ");
+    scanf("%lf", &a);
+    printf("\n Enter time (in seconds): ");
+    scanf("%lf", &t);
+    printf("\n Enter initial position: ");
+    scanf("%lf", &xi);
+
+    step1=t*t;
+    step2=0.5*a*step1;
+    step3=vi*t;
+    final=step2+step3+xi;
+    printf("\n\nThe final velocity is equal to %f \n", final);
+    break;
+
+  case 99:
+    break;
+
+  default:
+    puts("Invalid input!");
+  }
+  }while(kopt!=99);
+}
+
+int main (){
+
+  //Polynomial Initilization;
+    int order; // polynomial order
+    double coef[MAX_SIZE]; // polynomial coefficients
+    double x; // polynomial x value
+
+
+  char choice;
+  
+  while(1){
+    puts("\n");
+    puts("=====================================================");
+    puts(" Main Menu:");
+    puts("=====================================================");
+    puts(" a: Converters");
+    puts(" b: Basic Calculator");
+    puts(" c: Polynomial evaluator");
+    puts(" d: Formulas");
+    puts(" e: Exit\n");
+    printf("--> ");
+
+    scanf(" %c", &choice);
+
+    if (choice == 'a' || choice == 'A'){      
+      puts("You have selected the converters option\n");
+      conv();
+
+    }
+
+    else if (choice == 'b' || choice == 'B'){
+      puts("You have selected the Basic Calculator option \n");
+      calc();
+    }
+
+    else if (choice == 'c' || choice == 'C'){
+      puts("You have selected the Polynomial option \n");
+
+      order = getPolyOrder();
+      getCoefficients(coef, order+1);
+      printPoly(coef, order+1);
+      x=getXVal();
+
+      printf("\nThe polynomial evaluation is equal to %.2lf. \n\n", evaluatePoly(coef, order+1, x));
+    }
+      
+
+    else if (choice == 'd' || choice == 'D'){
+      int choiced;
+      printf("\n\nYou have selected the Formulas option \n");
+      while(1){
+      puts("1. Volume");
+      puts("2. Regular Polygons");
+      puts("3. Circles");
+      puts("4. Kinematics");
+      puts("9. Return to Main Menu");
+      printf("--->");
+
+      scanf("%d", &choiced);
+
+      if (choiced == 1){
+        volum();
+      }
+
+      else if (choiced == 2){
+        polymenu();
+      }
+
+      else if (choiced == 3){
+	circ();
+      }
+
+      else if (choiced == 4){ 
+	kinemenu();
+      }
+	 
+      else if (choiced == 9){
+	break;
+      }
+
+      else
+	{
+	  puts("Invalid input...Please try again. (type 9 to return to main)");
+	}
+      }
+
+    }
+
+    else if (choice == 'e' || choice == 'E'){
+      puts("Exiting program...");
+      break;
+    }
+
+    else
+      {
+	puts("Invalid Input... Please try again! (Type 'e' to exit program");
+      }
+
+    getchar();
+
+  }
+
+  return EXIT_SUCCESS;
+}
+
+
+  
